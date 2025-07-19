@@ -1,0 +1,16 @@
+---
+- name: Install Vim to servers
+  hosts: servers
+  become: true
+  tasks:
+    - name: install vim to ubuntu server
+      when: ansible_os_family == "Debian"
+      ansible.builtin.apt:
+        name: vim
+        state: latest
+
+    - name: install vim to redhat server
+      when: ansible_os_family == "RedHat"
+      ansible.builtin.dnf:
+        name: vim
+        state: latest
