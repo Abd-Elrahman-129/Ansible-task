@@ -27,7 +27,7 @@
     - name: Change apache2 port 
       ansible.builtin.replace:
         path: /etc/apache2/ports.conf
-        regexp: '80'
+        regexp: '80$'
         replace: '8080'
 
     - name: restart apache2 service
