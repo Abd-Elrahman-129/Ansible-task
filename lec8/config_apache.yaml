@@ -24,12 +24,14 @@
     ## and restart the apache
     ## use repalce module to replace the port
 
-    - name: Change apache2 port 
+    - name: Change apache2 port
+      notify: restart apache2 service 
       ansible.builtin.replace:
         path: /etc/apache2/ports.conf
-        regexp: '80$'
-        replace: '8080'
+        regexp: '^Listen 80$'
+        replace: 'Listen 8080'
 
+  handlers:
     - name: restart apache2 service
       ansible.builtin.service:
         name: apache2
